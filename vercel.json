@@ -1,4 +1,5 @@
 {
+  "framework": "vite",
   "buildCommand": "pnpm --filter @workspace/reels-app run build",
   "outputDirectory": "artifacts/reels-app/dist",
   "rewrites": [
