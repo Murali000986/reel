@@ -11,8 +11,8 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(0,255,255,0.4)]">
             <PlaySquare className="w-4 h-4 text-primary-foreground fill-primary-foreground" />
           </div>
-          <span className="font-bold text-lg tracking-tight hidden md:block">monkey_yt admin</span>
-          <span className="font-bold text-lg tracking-tight md:hidden">monkey_yt</span>
+          <span className="font-bold text-lg tracking-tight hidden md:block">MonkeyYT Admin</span>
+          <span className="font-bold text-lg tracking-tight md:hidden">MonkeyYT</span>
         </div>
 
         {/* Nav Items */}
