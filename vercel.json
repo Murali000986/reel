@@ -1,0 +1,7 @@
+{
+  "buildCommand": "pnpm install && pnpm --filter @workspace/reels-app run build",
+  "outputDirectory": "artifacts/reels-app/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
