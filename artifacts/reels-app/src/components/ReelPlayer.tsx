@@ -143,9 +143,11 @@ export function ReelPlayer({
     }
   }, []);
 
-  const videoSrc = reel.videoPath.startsWith('/api/') ? reel.videoPath : `/api/storage${reel.videoPath}`;
+  const apiUrl = import.meta.env.VITE_API_URL || '';
+  
+  const videoSrc = apiUrl + (reel.videoPath.startsWith('/api/') ? reel.videoPath : `/api/storage${reel.videoPath}`);
   const thumbSrc = reel.thumbnailPath
-    ? (reel.thumbnailPath.startsWith('/api/') ? reel.thumbnailPath : `/api/storage${reel.thumbnailPath}`)
+    ? apiUrl + (reel.thumbnailPath.startsWith('/api/') ? reel.thumbnailPath : `/api/storage${reel.thumbnailPath}`)
     : undefined;
 
   return (
