@@ -1,4 +1,0 @@
-{
-  "framework": "vite",
-  "buildCommand": "pnpm --filter @workspace/reels-app run build"
-}
