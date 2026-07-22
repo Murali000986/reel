@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'wouter';
-import { LayoutDashboard, Upload, Home, PlaySquare, Layers } from 'lucide-react';
+import { LayoutDashboard, Upload, Home, Layers } from 'lucide-react';
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,12 +7,14 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
       {/* Sidebar */}
       <nav className="w-full md:w-64 bg-card border-r border-border shrink-0 flex flex-col h-auto md:h-screen sticky top-0 z-50">
         {/* Logo */}
-        <div className="p-4 md:p-6 border-b border-border flex items-center gap-3 h-16 md:h-auto">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-[0_0_20px_rgba(0,255,255,0.4)]">
-            <PlaySquare className="w-4 h-4 text-primary-foreground fill-primary-foreground" />
-          </div>
-          <span className="font-bold text-lg tracking-tight hidden md:block">MonkeyYT Admin</span>
-          <span className="font-bold text-lg tracking-tight md:hidden">MonkeyYT</span>
+        <div className="p-4 md:p-5 border-b border-border flex items-center gap-3 h-16 md:h-auto">
+          <img src="/logo.png" alt="MonkeyYT" className="w-9 h-9 object-contain" />
+          <span className="font-black text-lg tracking-tight hidden md:block">
+            Monkey<span className="text-red-500">YT</span>
+          </span>
+          <span className="font-black text-lg tracking-tight md:hidden">
+            Monkey<span className="text-red-500">YT</span>
+          </span>
         </div>
 
         {/* Nav Items */}
