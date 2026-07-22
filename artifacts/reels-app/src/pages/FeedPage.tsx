@@ -63,10 +63,8 @@ export function FeedPage() {
       {/* Fixed top bar */}
       <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-4 pt-4 pointer-events-none">
         <div className="flex items-center gap-2 pointer-events-auto">
-          <div className="w-7 h-7 bg-primary rounded-md flex items-center justify-center shadow-[0_0_15px_rgba(0,255,255,0.5)]">
-            <PlaySquare className="w-4 h-4 text-black fill-black" />
-          </div>
-          <span className="text-white font-bold text-base tracking-tight drop-shadow-lg">Reels</span>
+          <img src="/logo.png" alt="monkey_yt logo" className="w-8 h-8 rounded-md object-cover shadow-[0_0_15px_rgba(0,255,255,0.5)]" />
+          <span className="text-white font-bold text-base tracking-tight drop-shadow-lg">monkey_yt</span>
         </div>
         <Link href="/admin" className="pointer-events-auto p-2 bg-black/30 backdrop-blur-md rounded-full text-white/70 hover:text-white transition-colors">
           <Settings className="w-4 h-4" />
