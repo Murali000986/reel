@@ -61,15 +61,15 @@ export function FeedPage() {
   return (
     <div className="relative h-[100dvh] w-full bg-black">
       {/* Fixed top bar - YouTube style */}
-      <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-2 bg-black pointer-events-none" style={{background: 'linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)'}}>
         <div className="flex items-center gap-2 pointer-events-auto">
           <img src="/logo.png" alt="MonkeyYT logo" className="w-9 h-9 object-contain drop-shadow-lg" />
           <span className="font-black text-lg tracking-tight text-white drop-shadow-lg">
             Monkey<span className="text-red-500">YT</span>
           </span>
         </div>
-        <Link href="/admin" className="pointer-events-auto p-2 bg-black/40 backdrop-blur-md rounded-full text-white/70 hover:text-white transition-colors">
-          <Settings className="w-4 h-4" />
+        <Link href="/admin" className="pointer-events-auto p-2 rounded-full text-white/70 hover:text-white transition-colors">
+          <Settings className="w-5 h-5" />
         </Link>
       </div>
 
