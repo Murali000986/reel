@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lobster&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @plugin "@tailwindcss/typography";
@@ -35,56 +35,56 @@
 }
 
 :root {
-  --background: 0 0% 6%;
-  --foreground: 0 0% 98%;
+  --background: 0 0% 100%; /* Pure white */
+  --foreground: 0 0% 9%; /* Dark text */
 
-  --card: 0 0% 10%;
-  --card-foreground: 0 0% 98%;
-  --card-border: 0 0% 16%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 9%;
+  --card-border: 0 0% 93%; /* Light gray border (#efefef) */
 
-  --border: 0 0% 18%;
-  --input: 0 0% 16%;
-  --ring: 0 100% 50%;
+  --border: 0 0% 93%; 
+  --input: 0 0% 96%;
+  --ring: 351 100% 45%; /* Pinterest Red */
 
-  /* YouTube Red */
-  --primary: 0 100% 50%;
+  /* Pinterest Red */
+  --primary: 351 100% 45%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 0 0% 16%;
-  --secondary-foreground: 0 0% 98%;
+  --secondary: 0 0% 93%;
+  --secondary-foreground: 0 0% 9%;
 
-  --muted: 0 0% 16%;
-  --muted-foreground: 0 0% 62%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
 
   --destructive: 0 100% 50%;
   --destructive-foreground: 0 0% 100%;
 
-  --app-font-sans: 'Roboto', sans-serif;
+  --app-font-sans: 'Inter', sans-serif;
   --app-font-mono: 'Space Mono', monospace;
   
-  --radius: 0.5rem;
+  --radius: 1rem; /* more rounded corners for Pinterest feel */
 }
 
 .dark {
-  --background: 0 0% 6%;
-  --foreground: 0 0% 98%;
+  --background: 0 0% 100%;
+  --foreground: 0 0% 9%;
 
-  --card: 0 0% 10%;
-  --card-foreground: 0 0% 98%;
-  --card-border: 0 0% 16%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 9%;
+  --card-border: 0 0% 93%;
 
-  --border: 0 0% 18%;
-  --input: 0 0% 16%;
-  --ring: 0 100% 50%;
+  --border: 0 0% 93%;
+  --input: 0 0% 96%;
+  --ring: 351 100% 45%;
 
-  --primary: 0 100% 50%;
+  --primary: 351 100% 45%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 0 0% 16%;
-  --secondary-foreground: 0 0% 98%;
+  --secondary: 0 0% 93%;
+  --secondary-foreground: 0 0% 9%;
 
-  --muted: 0 0% 16%;
-  --muted-foreground: 0 0% 62%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
 
   --destructive: 0 100% 50%;
   --destructive-foreground: 0 0% 100%;
@@ -106,4 +106,8 @@
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.font-logo {
+  font-family: 'Lobster', cursive;
 }

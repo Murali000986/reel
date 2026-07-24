@@ -96,7 +96,7 @@ export function AdminDashboard() {
                   </td>
                 </tr>
               )}
-              {reelsData?.reels?.map((reel) => (
+              {reelsData?.reels?.map((reel: any) => (
                 <tr key={reel.id} className="hover:bg-muted/20 transition-colors group">
                   <td className="px-6 py-4 font-medium flex items-center gap-3">
                     <div className="w-12 h-16 bg-muted rounded overflow-hidden shrink-0 border border-border relative">

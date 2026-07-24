@@ -1,6 +1,7 @@
 import { Router, type IRouter } from "express";
 import { eq, desc, count, sum, sql } from "drizzle-orm";
-import { db, reelsTable } from "@workspace/db";
+import { db, reelsTable, usersTable, reelLikesTable } from "@workspace/db";
+import { optionalAuth, type AuthenticatedRequest } from "../middlewares/auth";
 import {
   ListReelsQueryParams,
   CreateReelBody,
@@ -13,6 +14,53 @@ import {
 } from "@workspace/api-zod";
 
 const router: IRouter = Router();
+
+// Existing routers...
+// We'll insert the modified router.get("/reels/:id") below
+
+router.get("/reels/:id", optionalAuth, async (req: AuthenticatedRequest, res): Promise<void> => {
+  const params = GetReelParams.safeParse(req.params);
+  if (!params.success) {
+    res.status(400).json({ error: params.error.message });
+    return;
+  }
+
+  const userId = req.userId;
+
+  const [row] = await db
+    .select({
+      reel: reelsTable,
+      user: {
+        id: usersTable.id,
+        username: usersTable.username,
+        displayName: usersTable.displayName,
+        avatarUrl: usersTable.avatarUrl,
+      }
+    })
+    .from(reelsTable)
+    .leftJoin(usersTable, eq(usersTable.id, reelsTable.userId))
+    .where(eq(reelsTable.id, params.data.id));
+
+  if (!row) {
+    res.status(404).json({ error: "Reel not found" });
+    return;
+  }
+
+  let isLiked = false;
+  if (userId) {
+    const [like] = await db
+      .select()
+      .from(reelLikesTable)
+      .where(sql`${reelLikesTable.userId} = ${userId} AND ${reelLikesTable.reelId} = ${params.data.id}`);
+    isLiked = !!like;
+  }
+
+  res.json({
+    ...row.reel,
+    user: row.user,
+    isLiked,
+  });
+});
 
 router.get("/reels", async (req, res): Promise<void> => {
   const parsed = ListReelsQueryParams.safeParse(req.query);
@@ -51,14 +99,19 @@ router.get("/reels", async (req, res): Promise<void> => {
   });
 });
 
-router.post("/reels", async (req, res): Promise<void> => {
+router.post("/reels", optionalAuth, async (req: AuthenticatedRequest, res): Promise<void> => {
   const parsed = CreateReelBody.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: parsed.error.message });
     return;
   }
 
-  const [reel] = await db.insert(reelsTable).values(parsed.data).returning();
+  const insertData = {
+    ...parsed.data,
+    userId: req.userId || null,
+  };
+
+  const [reel] = await db.insert(reelsTable).values(insertData).returning();
   res.status(201).json(reel);
 });
 
@@ -91,25 +144,6 @@ router.get("/reels/stats", async (_req, res): Promise<void> => {
   });
 });
 
-router.get("/reels/:id", async (req, res): Promise<void> => {
-  const params = GetReelParams.safeParse(req.params);
-  if (!params.success) {
-    res.status(400).json({ error: params.error.message });
-    return;
-  }
-
-  const [reel] = await db
-    .select()
-    .from(reelsTable)
-    .where(eq(reelsTable.id, params.data.id));
-
-  if (!reel) {
-    res.status(404).json({ error: "Reel not found" });
-    return;
-  }
-
-  res.json(reel);
-});
 
 router.patch("/reels/:id", async (req, res): Promise<void> => {
   const params = UpdateReelParams.safeParse(req.params);

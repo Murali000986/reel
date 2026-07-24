@@ -1,9 +1,10 @@
-import { pgTable, text, serial, timestamp, integer, real } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, uuid, timestamp, integer, real } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod/v4";
 
 export const reelsTable = pgTable("reels", {
   id: serial("id").primaryKey(),
+  userId: uuid("user_id"), // nullable for admin-uploaded reels
   title: text("title").notNull(),
   description: text("description"),
   videoPath: text("video_path").notNull(),
